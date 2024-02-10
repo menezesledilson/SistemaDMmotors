@@ -1,0 +1,52 @@
+Tabela 
+
+CREATE TABLE acesso (
+    Id SERIAL PRIMARY KEY,
+    usuario VARCHAR (10),
+    login VARCHAR (10),
+    senha VARCHAR (4)
+);
+
+CREATE TABLE LIVROCAIXA (
+    Id SERIAL PRIMARY KEY,
+    datahora TIMESTAMP DEFAULT date_trunc('minute', CURRENT_TIMESTAMP),
+    descricao VARCHAR(80),
+    entrada DOUBLE PRECISION,
+    saida DOUBLE PRECISION,
+	observacao VARCHAR(200)
+);
+
+CREATE TABLE venda (
+    Id SERIAL PRIMARY KEY,
+    datahora TIMESTAMP DEFAULT date_trunc('minute', CURRENT_TIMESTAMP),
+    cliente VARCHAR(80),
+    celular VARCHAR(15),
+    datavenda varchar(10),  
+    nomecarro VARCHAR(80),
+    anocarro INT,
+    placacarro VARCHAR(7),
+    chassicarro VARCHAR(17),
+    pagamento VARCHAR(50),
+    comissao DECIMAL(10, 2),
+    observacao  VARCHAR(80)
+);
+
+bloquear a edicção // Configurar a tabela como não editável
+        tbDLivroCaixaAnual.setDefaultEditor(Object.class, null);
+
+
+teste 
+
+INSERT INTO COMISSAO (datahora, cliente, celular, datavenda, nomecarro, anocarro, placacarro, chassicarro, pagamento, comissao, observacao)
+VALUES 
+-- Janeiro
+('2024-01-01 08:00:00', 'Maria Silva', '(98)9 9838-9378', '01-01-2024', 'Fiat Strada', 2022, 'ABC1234', '123ABC456DEF78901', 'Dinheiro', 1500.75, 'Primeira venda do mês'),
+('2024-01-02 10:30:00', 'João Oliveira', '555123456', '02-01-2024', 'Volkswagen Gol', 2020, 'XYZ5678', '456DEF78901234567', 'Cartão de Crédito', 2000.50, 'Cliente fiel'),
+('2024-01-03 09:15:00', 'Amanda Santos', '999888777', '03-01-2024', 'Chevrolet Onix', 2023, 'JKL9876', '789GHI01234567890', 'Cheque', 1800.00, 'Negociação especial'),
+('2024-01-04 12:00:00', 'Pedro Souza', '123456789', '04-01-2024', 'Ford Ka', 2021, 'LMN4321', '987HIJ65432101234', 'Boleto', 2200.25, 'Promoção de lançamento'),
+('2024-01-05 11:30:00', 'Ana Lima', '111222333', '05-01-2024', 'Renault Kwid', 2022, 'OPQ5678', '321DEF01234567890', 'Dinheiro', 1900.50, 'Desconto especial'),
+('2024-01-06 14:45:00', 'Carlos Rocha', '777888999', '06-01-2024', 'Toyota Corolla', 2022, 'LMN5678', '901GHI67890123456', 'Dinheiro', 2400.50, 'Desconto de fim de ano'),
+('2024-01-07 16:00:00', 'Larissa Oliveira', '222333444', '07-01-2024', 'Honda HR-V', 2023, 'OPQ1234', '567JKL23456789012', 'Cartão de Crédito', 1800.75, 'Cliente VIP'),
+('2024-01-08 13:30:00', 'Lucas Costa', '333444555', '08-01-2024', 'Fiat Toro', 2021, 'RST9876', '543JKL01234567890', 'Cartão de Crédito', 2100.75, 'Cliente recorrente'),
+('2024-01-09 09:45:00', 'Camila Santos', '444555666', '09-01-2024', 'Hyundai HB20', 2020, 'XYZ9876', '123DEF45678901234', 'Boleto', 2000.25, 'Cliente indicado'),
+('2024-01-10 18:15:00', 'Felipe Martins', '666777888', '10-01-2024', 'Chevrolet Prisma', 2023, 'ABC5678', '567GHI90123456789', 'Cheque', 1800.00, 'Oferta especial');
