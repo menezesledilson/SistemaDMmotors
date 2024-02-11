@@ -1,8 +1,6 @@
 package financeiro;
 
-import financeiro.VIEW.frmMenu;
 import financeiro.View.frmLogin;
-
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.WindowConstants;
@@ -10,8 +8,8 @@ import javax.swing.WindowConstants;
 public class FrmPrincipal {
 
     public static void main(String[] args) {
-        //frmLogin mm = new frmLogin();
-      frmMenu mm = new frmMenu();
+       frmLogin mm = new frmLogin();
+     // frmMenu mm = new frmMenu();
 
         try {
             for (LookAndFeelInfo info : UIManager.getInstalledLookAndFeels()) {

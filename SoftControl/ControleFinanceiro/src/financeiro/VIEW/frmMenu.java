@@ -15,7 +15,7 @@ public class frmMenu extends javax.swing.JFrame {
         initComponents();
         // Configurações do frame
         setDefaultCloseOperation(frmMenu.EXIT_ON_CLOSE);
-        setSize(1200, 600);
+        setSize(1250, 600);
         // Desabilita a capacidade de redimensionamento
         setResizable(false);
 
@@ -30,6 +30,7 @@ public class frmMenu extends javax.swing.JFrame {
         jFrame1 = new javax.swing.JFrame();
         jMenuItem6 = new javax.swing.JMenuItem();
         jDesktop = new javax.swing.JDesktopPane();
+        jLabel1 = new javax.swing.JLabel();
         jMenuBar1 = new javax.swing.JMenuBar();
         jMenu5 = new javax.swing.JMenu();
         jMenuItem5 = new javax.swing.JMenuItem();
@@ -62,20 +63,27 @@ public class frmMenu extends javax.swing.JFrame {
         jMenuItem6.setText("jMenuItem6");
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
-        setTitle("Financial Control");
+        setTitle("DM Motors v2.0");
 
         jDesktop.setBackground(new java.awt.Color(255, 255, 255));
         jDesktop.setPreferredSize(new java.awt.Dimension(1146, 548));
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/financeiro/img/2.jpg"))); // NOI18N
+        jLabel1.setMaximumSize(new java.awt.Dimension(1250, 500));
+        jLabel1.setMinimumSize(new java.awt.Dimension(1250, 500));
+        jLabel1.setPreferredSize(new java.awt.Dimension(1250, 400));
+
+        jDesktop.setLayer(jLabel1, javax.swing.JLayeredPane.DEFAULT_LAYER);
 
         javax.swing.GroupLayout jDesktopLayout = new javax.swing.GroupLayout(jDesktop);
         jDesktop.setLayout(jDesktopLayout);
         jDesktopLayout.setHorizontalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 1172, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.PREFERRED_SIZE, 1172, Short.MAX_VALUE)
         );
         jDesktopLayout.setVerticalGroup(
             jDesktopLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGap(0, 527, Short.MAX_VALUE)
+            .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 527, Short.MAX_VALUE)
         );
 
         jMenu5.setText("Cadastro");
@@ -255,6 +263,7 @@ public class frmMenu extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JDesktopPane jDesktop;
     private javax.swing.JFrame jFrame1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JMenu jMenu3;

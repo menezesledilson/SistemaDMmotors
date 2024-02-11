@@ -161,7 +161,7 @@ public class frmBackup extends javax.swing.JInternalFrame {
         // Crie um diálogo de seleção de arquivo
         JFileChooser fileChooser = new JFileChooser(restoreDirectory);
         fileChooser.setDialogTitle("Selecione o arquivo de backup");
-        fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos de backup", "dm"));
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos de backup", "sql"));
         int userSelection = fileChooser.showOpenDialog(this);
         if (userSelection == JFileChooser.APPROVE_OPTION) {
             // Se o usuário selecionou um arquivo

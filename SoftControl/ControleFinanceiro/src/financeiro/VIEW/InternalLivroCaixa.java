@@ -472,71 +472,7 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro ao carregar a tabela de dados: " + ErroSql, "ERRO", JOptionPane.ERROR_MESSAGE);
         }
 
-        /* private void carregaTabela() {
-        tamanhoTabela();
-
-        DefaultTableModel modelo = (DefaultTableModel) tbLivroCaixa.getModel();
-        DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
-        centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
-
-        tbLivroCaixa.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-
-        try {
-            Connection con = conexao.getConnection();
-            PreparedStatement pstm;
-            ResultSet rs;
-
-            double saldoAtual = 0;
-            double saldoAnterior = 0;
-
-            // Obter o mês e o ano atual
-            Calendar cal = Calendar.getInstance();
-            int mesAtual = cal.get(Calendar.MONTH) + 1; // Adicione 1 porque o mês é baseado em zero
-            int anoAtual = cal.get(Calendar.YEAR);
-
-            pstm = con.prepareStatement("SELECT id, datahora, descricao, entrada, saida, observacao FROM livrocaixa WHERE EXTRACT(MONTH FROM datahora) = ? AND EXTRACT(YEAR FROM datahora) = ?;");
-            pstm.setInt(1, mesAtual);
-            pstm.setInt(2, anoAtual);
-            rs = pstm.executeQuery();
-
-            NumberFormat currencyEntrada = NumberFormat.getCurrencyInstance();
-            NumberFormat currencySaida = NumberFormat.getCurrencyInstance();
-
-            modelo.setNumRows(0);
-
-            while (rs.next()) {
-                Timestamp dataHora = rs.getTimestamp("datahora");
-
-                // Formatar a data e hora para o formato brasileiro
-                SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-                String dataHoraFormatada = formatoBrasileiro.format(dataHora);
-
-                double entrada = rs.getDouble("entrada");
-                double saida = rs.getDouble("saida");
-
-                modelo.addRow(new Object[]{
-                    dataHoraFormatada,
-                    rs.getString("descricao"),
-                    currencyEntrada.format(entrada),
-                    currencySaida.format(saida),
-                    rs.getString("observacao"),});
-
-                // Atualiza os saldos dentro do loop
-                saldoAnterior = saldoAtual;
-                saldoAtual += (entrada - saida);
-            }
-
-            // Reiniciar os saldos para o próximo mês
-            saldoAtual = 0;
-            saldoAnterior = 0;
-
-            lblSaldoAtual.setText("Saldo atual " + NumberFormat.getCurrencyInstance().format(saldoAtual));
-            lblSaldoAnterior.setText("Saldo anterior " + NumberFormat.getCurrencyInstance().format(saldoAnterior));
-
-            conexao.closeConnection(con, pstm, rs);
-        } catch (Exception ErroSql) {
-            JOptionPane.showMessageDialog(null, "Erro ao carregar a tabela de dados: " + ErroSql, "ERRO", JOptionPane.ERROR_MESSAGE);
-        }*/
+     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

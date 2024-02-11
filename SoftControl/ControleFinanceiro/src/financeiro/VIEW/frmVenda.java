@@ -75,6 +75,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         jSeparator1 = new javax.swing.JSeparator();
 
         setClosable(true);
+        setResizable(true);
         setTitle("Controle de vendas");
 
         jPanel1.setBackground(new java.awt.Color(204, 204, 204));
@@ -267,7 +268,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel9)
                                 .addGap(12, 12, 12)
                                 .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, 257, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 29, Short.MAX_VALUE))
+                        .addGap(0, 35, Short.MAX_VALUE))
                     .addComponent(jSeparator1))
                 .addContainerGap())
         );
@@ -325,9 +326,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 6, Short.MAX_VALUE))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
