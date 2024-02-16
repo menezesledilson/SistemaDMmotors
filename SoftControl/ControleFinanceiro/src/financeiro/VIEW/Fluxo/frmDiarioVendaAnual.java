@@ -1,6 +1,6 @@
 package financeiro.VIEW.Fluxo;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.VIEW.frmVenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -96,27 +96,17 @@ public class frmDiarioVendaAnual extends javax.swing.JInternalFrame {
     private void tamanhoTabela() {
         tbVenda.getColumnModel().getColumn(0).setPreferredWidth(150);
         tbVenda.getColumnModel().getColumn(1).setPreferredWidth(100);
-
         tbVenda.getColumnModel().getColumn(2).setPreferredWidth(250);
         tbVenda.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbVenda.getColumnModel().getColumn(4).setPreferredWidth(150);
-        // tbVenda.getColumnModel().getColumn(5).setPreferredWidth(50);
-
         tbVenda.getColumnModel().getColumn(6).setPreferredWidth(100);
         tbVenda.getColumnModel().getColumn(7).setPreferredWidth(190);
         tbVenda.getColumnModel().getColumn(8).setPreferredWidth(100);
         tbVenda.getColumnModel().getColumn(9).setPreferredWidth(100);
-
-        // Configurar a tabela como não editável
         tbVenda.setDefaultEditor(Object.class, null);
-
     }
 
-    private void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) tbVenda.getModel();
-        modelo.setNumRows(0);
-
-        tamanhoTabela();
+    private void colunaTabela() {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         tbVenda.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -125,9 +115,14 @@ public class frmDiarioVendaAnual extends javax.swing.JInternalFrame {
         tbVenda.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         tbVenda.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
         tbVenda.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
-
         tbVenda.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+    }
 
+    private void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tbVenda.getModel();
+        modelo.setNumRows(0);
+        tamanhoTabela();
+        colunaTabela();
         try {
             Connection con = conexao.getConnection();
             PreparedStatement pstm;
@@ -136,15 +131,14 @@ public class frmDiarioVendaAnual extends javax.swing.JInternalFrame {
             String sqlSomaComissao = "SELECT SUM (comissao) AS totalcomissao FROM venda ";
 
             pstm = con.prepareStatement(sqlSomaComissao);
-
             rs = pstm.executeQuery();
-
             double totalcomissao = 0.0;
+
             if (rs.next()) {
                 totalcomissao = rs.getDouble("totalcomissao");
             }
-            lblSaldoComissao.setText(" Comissões acumuladas no ano. " + NumberFormat.getCurrencyInstance().format(totalcomissao));
 
+            lblSaldoComissao.setText(" Comissões acumuladas no ano. " + NumberFormat.getCurrencyInstance().format(totalcomissao));
             pstm = con.prepareStatement("SELECT datahora, cliente, celular, datavenda, nomecarro, anocarro, placacarro, chassicarro, pagamento, comissao, observacao FROM venda order by id DESC;");
             rs = pstm.executeQuery();
 
@@ -159,7 +153,6 @@ public class frmDiarioVendaAnual extends javax.swing.JInternalFrame {
 
                 modelo.addRow(new Object[]{
                     dataHoraFormatada,
-                    //  rs.getString("datahora"),
                     rs.getString("datavenda"),
                     rs.getString("cliente"),
                     rs.getString("celular"),
@@ -179,9 +172,8 @@ public class frmDiarioVendaAnual extends javax.swing.JInternalFrame {
     }
 
     private void tbVendaMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVendaMouseClicked
-     
-    }//GEN-LAST:event_tbVendaMouseClicked
 
+    }//GEN-LAST:event_tbVendaMouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JPanel jPanel1;

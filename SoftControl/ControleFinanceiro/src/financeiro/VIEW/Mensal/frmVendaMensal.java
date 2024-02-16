@@ -1,7 +1,7 @@
 package financeiro.VIEW.Mensal;
 
 import financeiro.VIEW.Fluxo.*;
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.VIEW.frmVenda;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -147,7 +147,6 @@ public class frmVendaMensal extends javax.swing.JInternalFrame {
         btProcurar.setEnabled(false);
     }
 
-
     private void tbVendaMensalMouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_tbVendaMensalMouseClicked
 
     }//GEN-LAST:event_tbVendaMensalMouseClicked
@@ -158,11 +157,10 @@ public class frmVendaMensal extends javax.swing.JInternalFrame {
     private double comissaoAcumulada = 0.00;
 
     private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
-
         // Verificar se as datas inicial e final estão selecionadas
         if (jDataInicial.getDate() == null || jDataFinal.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Por favor, selecione as datas inicial e final antes de realizar a pesquisa.", "Datas não Selecionadas", JOptionPane.WARNING_MESSAGE);
-            return; // Abortar a operação se as datas não estiverem selecionadas
+            return;
         }
         // Configurar a tabela como não editável
         tbVendaMensal.setDefaultEditor(Object.class, null);
@@ -205,7 +203,7 @@ public class frmVendaMensal extends javax.swing.JInternalFrame {
             String sqlBuscarVendas = "SELECT * FROM venda WHERE (datahora BETWEEN ? AND ?) OR (datahora BETWEEN ? AND ?)";
 
             try (PreparedStatement pstmSomaComissao = con.prepareStatement(sqlSomaComissaoPesquisa);
-                PreparedStatement pstmBuscarVendas = con.prepareStatement(sqlBuscarVendas)) {
+                    PreparedStatement pstmBuscarVendas = con.prepareStatement(sqlBuscarVendas)) {
                 pstmSomaComissao.setInt(1, jDataInicial.getCalendar().get(Calendar.MONTH) + 1);
                 pstmSomaComissao.setTimestamp(2, dataInicio);
                 pstmSomaComissao.setTimestamp(3, dataFim);
@@ -247,16 +245,13 @@ public class frmVendaMensal extends javax.swing.JInternalFrame {
                 }
             } catch (SQLException ex) {
                 ex.printStackTrace();
-                // Você pode adicionar mais tratamentos específicos de exceções aqui, se necessário
             }
         } catch (SQLException ex) {
             ex.printStackTrace();
         }
-
         jDataInicial.setEnabled(false);
         jDataFinal.setEnabled(false);
         btProcurar.setEnabled(false);
-
     }//GEN-LAST:event_btProcurarActionPerformed
     public void ativarBotao() {
         jDataInicial.setEnabled(true);
@@ -269,8 +264,6 @@ public class frmVendaMensal extends javax.swing.JInternalFrame {
         jDataFinal.setDate(null);
         lblSaldoComissao.setText("");
     }//GEN-LAST:event_btPesquisaActionPerformed
-
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btPesquisa;
     private javax.swing.JButton btProcurar;

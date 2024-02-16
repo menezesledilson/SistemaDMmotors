@@ -1,6 +1,6 @@
 package financeiro.VIEW;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.DAO.LivroCaixaDao;
 import financeiro.MODEL.LivroCaixa;
 import java.sql.Connection;
@@ -253,9 +253,8 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
                 + "\n Deseja realmente fazer alteração?",
                 "Alteração de dados.", JOptionPane.YES_NO_OPTION)) {
             case 0:
-                double novaEntrada = Double.parseDouble(txtEntrada.getText());
-                double novaSaida = Double.parseDouble(txtSaida.getText());
-
+                double novaEntrada = Double.parseDouble(txtEntrada.getText().trim().replace(",", "."));
+                double novaSaida = Double.parseDouble(txtSaida.getText().trim().replace(",", "."));
                 // Define os novos valores
                 l.setDescricao(txtDescricao.getText());
                 l.setEntrada(novaEntrada);
@@ -354,9 +353,7 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
         txtDescricao.setText(l.getDescricao());
         txtEntrada.setText(Double.toString(l.getEntrada()));
         txtSaida.setText(Double.toString(l.getSaida()));
-
         txtObs.setText(l.getObservacao());
-
         btAlterar.setEnabled(true);
         btExcluir.setEnabled(true);
         btSaida.setEnabled(false);
@@ -364,11 +361,9 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
         ativarCampo();
 
     }//GEN-LAST:event_tbLivroCaixaMouseClicked
-
     private void limpaCampo() {
         txtDescricao.setText(" ");
         txtEntrada.setText(" ");
-
         txtSaida.setText(" ");
         txtObs.setText(" ");
     }
@@ -391,7 +386,6 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
         txtEntrada.setEnabled(true);
         txtObs.setEnabled(true);
         txtSaida.setEnabled(true);
-
     }
 
     private void desativarCampo() {
@@ -407,7 +401,6 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
         tbLivroCaixa.getColumnModel().getColumn(2).setPreferredWidth(90);
         tbLivroCaixa.getColumnModel().getColumn(3).setPreferredWidth(90);
         tbLivroCaixa.getColumnModel().getColumn(4).setPreferredWidth(200);
-
     }
 
     private void carregaTabela() {
@@ -461,6 +454,7 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
 
                 // Atualiza os saldos dentro do loop
                 saldoAnterior = saldoAtual;
+
                 saldoAtual += (entrada - saida);
             }
 
@@ -472,7 +466,6 @@ public class InternalLivroCaixa extends javax.swing.JInternalFrame {
             JOptionPane.showMessageDialog(null, "Erro ao carregar a tabela de dados: " + ErroSql, "ERRO", JOptionPane.ERROR_MESSAGE);
         }
 
-     
     }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

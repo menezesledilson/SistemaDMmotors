@@ -1,7 +1,7 @@
 package financeiro.DAO;
 
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.MODEL.LivroCaixa;
 import java.sql.Connection;
 import java.sql.PreparedStatement;

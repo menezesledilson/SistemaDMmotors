@@ -1,6 +1,6 @@
 package financeiro.VIEW;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.DAO.VendaDao;
 import financeiro.MODEL.Vendas;
 import java.awt.Desktop;
@@ -94,7 +94,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             }
         });
 
-        btEditar.setText("Editar");
+        btEditar.setText("Alterar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -212,6 +212,18 @@ public class frmVenda extends javax.swing.JInternalFrame {
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
+                                        .addComponent(jLabel1)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(jLabel2)
+                                        .addGap(12, 12, 12)
+                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addComponent(jLabel3)
+                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                    .addGroup(jPanel1Layout.createSequentialGroup()
                                         .addComponent(btNovo)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btGravar)
@@ -220,33 +232,21 @@ public class frmVenda extends javax.swing.JInternalFrame {
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                                         .addComponent(btExcluir)
                                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                        .addComponent(btSalvarPdf))
-                                    .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addComponent(jLabel1)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, 214, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(jLabel2)
-                                        .addGap(12, 12, 12)
-                                        .addComponent(txtCelular, javax.swing.GroupLayout.PREFERRED_SIZE, 109, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                                        .addComponent(btSalvarPdf)
+                                        .addGap(18, 18, 18)
+                                        .addComponent(btAbrirPDF)))
                                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(6, 6, 6)
-                                        .addComponent(jLabel3)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                        .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, 84, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addGap(12, 12, 12)
+                                        .addGap(10, 10, 10)
                                         .addComponent(jLabel8)
                                         .addGap(12, 12, 12)
                                         .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                        .addGap(18, 18, 18)
                                         .addComponent(jLabel10)
                                         .addGap(12, 12, 12)
                                         .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, 75, javax.swing.GroupLayout.PREFERRED_SIZE))
                                     .addGroup(jPanel1Layout.createSequentialGroup()
-                                        .addGap(12, 12, 12)
-                                        .addComponent(btAbrirPDF)
-                                        .addGap(102, 102, 102)
+                                        .addGap(96, 96, 96)
                                         .addComponent(lblSaldoComissao))))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel4)
@@ -284,10 +284,13 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     .addComponent(btSalvarPdf)
                     .addComponent(lblSaldoComissao)
                     .addComponent(btAbrirPDF))
-                .addGap(25, 25, 25)
+                .addGap(28, 28, 28)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING)
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel8))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -296,9 +299,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                             .addComponent(jLabel2))
                         .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel10)
-                            .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)))
+                            .addComponent(jLabel10)))
                     .addComponent(jLabel1))
                 .addGap(24, 24, 24)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -317,7 +318,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
                         .addComponent(jLabel9)))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                 .addComponent(jSeparator1, javax.swing.GroupLayout.PREFERRED_SIZE, 10, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 7, Short.MAX_VALUE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addComponent(jScrollPane2, javax.swing.GroupLayout.PREFERRED_SIZE, 287, javax.swing.GroupLayout.PREFERRED_SIZE)
                 .addContainerGap())
         );
@@ -366,7 +367,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
             cbxPagamento.addItem("Transf. Bancária");
         }
 
-        // Adiciona os anos como strings ao JComboBox
         cbxAno.addItem(String.valueOf(c.getAnoCarro()));
         // Define o ano selecionado como uma string
         cbxAno.setSelectedItem(String.valueOf(c.getAnoCarro()));
@@ -393,13 +393,12 @@ public class frmVenda extends javax.swing.JInternalFrame {
                 if (resultado == JFileChooser.APPROVE_OPTION) {
                     File arquivoPDF = fileChooser.getSelectedFile();
 
-                    // Verifica se o arquivo PDF é válido
+                    //Verificar se o arquivo PDF é valido
                     if (arquivoPDF.exists() && arquivoPDF.isFile() && arquivoPDF.getName().toLowerCase().endsWith(".pdf")) {
                         desktop.open(arquivoPDF);
                     } else {
-                        // Se não for um arquivo PDF válido
-                        JOptionPane.showMessageDialog(this, "Selecione um arquivo PDF válido.", "Erro", JOptionPane.ERROR_MESSAGE);
                     }
+
                 } else {
                     // Se o usuário cancelou a escolha
                     JOptionPane.showMessageDialog(this, "Operação cancelada pelo usuário.", "Aviso", JOptionPane.WARNING_MESSAGE);
@@ -410,7 +409,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
             }
         } catch (IOException ex) {
             ex.printStackTrace();
-            JOptionPane.showMessageDialog(this, "Erro ao abrir o arquivo PDF.", "Erro", JOptionPane.ERROR_MESSAGE);
         }
     }//GEN-LAST:event_btAbrirPDFActionPerformed
 
@@ -423,6 +421,10 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File arquivoSelecionado = fileChooser.getSelectedFile();
+            File directory = new File("C:\\SoftControl\\ControleFinanceiro\\crlv");
+            if (!directory.exists()) {
+                directory.mkdirs(); // Cria o diretório se não existir
+            }
 
             // Verifica se o arquivo tem extensão .pdf
             if (arquivoSelecionado.getName().toLowerCase().endsWith(".pdf")) {
@@ -464,7 +466,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
                 dao.remover(c);
                 carregaTabela();
                 limparCampos();
-                // desativaBotoes();
                 desativarCampos();
                 break;
             case 1:
@@ -506,24 +507,19 @@ public class frmVenda extends javax.swing.JInternalFrame {
                 c.setNomeCliente(txtCliente.getText());
                 c.setCelular(txtCelular.getText());
                 c.setDataVenda(txtDataVenda.getText());
-
                 String statusPag = cbxPagamento.getSelectedItem().toString();
                 c.setStatus(statusPag);
-
-                c.setComissao(Double.parseDouble(txtComissao.getText()));
+                String comissaoText = txtComissao.getText().trim().replace(",", ".");
+                c.setComissao(Double.parseDouble(comissaoText));
                 c.setModelCarro(txtModelo.getText());
-
                 c.setPlacaCarro(txtPlaca.getText());
-
                 String anoCar = cbxAno.getSelectedItem().toString();
                 c.setAnoCarro(Integer.valueOf(anoCar));
-
                 c.setChassi(txtChassi.getText());
 
                 dao.alterar(c);
                 carregaTabela();
                 limparCampos();
-                // desativaBotoes();
                 desativarCampos();
                 break;
             case 1:
@@ -545,20 +541,16 @@ public class frmVenda extends javax.swing.JInternalFrame {
         String comissaoText = txtComissao.getText().trim().replace(",", ".");
         double comissao = Double.parseDouble(comissaoText);
         c.setComissao(comissao);
-
         c.setNomeCliente(txtCliente.getText());
         c.setCelular(txtCelular.getText());
         c.setDataVenda(txtDataVenda.getText());
         c.setModelCarro(txtModelo.getText().toUpperCase());
         c.setObservacao(txtObs.getText());
-
         String statusPag = cbxPagamento.getSelectedItem().toString();
         c.setStatus(statusPag);
-
         String anoCarro = cbxAno.getSelectedItem().toString();
         int anoCarroInt = Integer.parseInt(anoCarro);
         c.setAnoCarro(anoCarroInt);
-
         c.setPlacaCarro(txtPlaca.getText().toUpperCase());
         c.setChassi(txtChassi.getText().toUpperCase());
 
@@ -576,12 +568,9 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private void tamanhoTabela() {
         tbVenda.getColumnModel().getColumn(0).setPreferredWidth(150);
         tbVenda.getColumnModel().getColumn(1).setPreferredWidth(100);
-
         tbVenda.getColumnModel().getColumn(2).setPreferredWidth(250);
         tbVenda.getColumnModel().getColumn(3).setPreferredWidth(150);
         tbVenda.getColumnModel().getColumn(4).setPreferredWidth(150);
-        // tbVenda.getColumnModel().getColumn(5).setPreferredWidth(50);
-
         tbVenda.getColumnModel().getColumn(6).setPreferredWidth(100);
         tbVenda.getColumnModel().getColumn(7).setPreferredWidth(190);
         tbVenda.getColumnModel().getColumn(8).setPreferredWidth(100);
@@ -589,39 +578,9 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         // Configurar a tabela como não editável
         tbVenda.setDefaultEditor(Object.class, null);
-
     }
 
-    public class DateRenderer extends DefaultTableCellRenderer {
-
-        // final SimpleDateFormat dateFormat = new SimpleDateFormat("dd/MM/yyyy");
-        final SimpleDateFormat dateTimeFormat = new SimpleDateFormat("dd/MM/yyyy HH:mm");
-
-        @Override
-        public void setValue(Object value) {
-            if (value instanceof Date) {
-                //    value = dateFormat.format((Date) value);
-            } else if (value instanceof Timestamp) {
-                Timestamp timestampValue = (Timestamp) value;
-                Date dateValue = new Date(timestampValue.getTime());
-                String formattedDateTime = dateTimeFormat.format(dateValue);
-
-                // Define o valor formatado na célula da tabela
-                value = formattedDateTime;
-            }
-            super.setValue(value);
-        }
-    }
-    // Declaração das variáveis de controle mes
-    // Inicializado com um valor impossível para garantir a zeragem na primeira iteração
-    private int mesAnterior = -1;
-    private double comissaoAcumulada = 0.00;
-
-    private void carregaTabela() {
-        DefaultTableModel modelo = (DefaultTableModel) tbVenda.getModel();
-        modelo.setNumRows(0);
-
-        tamanhoTabela();
+    private void colunaTabela() {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
         tbVenda.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
@@ -630,18 +589,24 @@ public class frmVenda extends javax.swing.JInternalFrame {
         tbVenda.getColumnModel().getColumn(6).setCellRenderer(centerRenderer);
         tbVenda.getColumnModel().getColumn(7).setCellRenderer(centerRenderer);
         tbVenda.getColumnModel().getColumn(8).setCellRenderer(centerRenderer);
+    }
+// Inicializado com um valor impossível para garantir a zeragem na primeira iteração
+    private int mesAnterior = -1;
+    private double comissaoAcumulada = 0.00;
 
-        DateRenderer dateRenderer = new DateRenderer();
-        tbVenda.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
+    private void carregaTabela() {
+        DefaultTableModel modelo = (DefaultTableModel) tbVenda.getModel();
+        modelo.setNumRows(0);
+
+        tamanhoTabela();
+        colunaTabela();
 
         try {
             Connection con = conexao.getConnection();
             PreparedStatement pstm;
             ResultSet rs;
-
             //Obter o mês atual
             int mesAtual = LocalDate.now().getMonthValue();
-
             //Verificar se houve uma mudança de mês
             if (mesAtual != mesAnterior) {
                 //zerar a comissão acumulada quando mudar de mês
@@ -668,15 +633,16 @@ public class frmVenda extends javax.swing.JInternalFrame {
             while (rs.next()) {
                 Timestamp dataHora = rs.getTimestamp("datahora");
                 int mesDataHora = dataHora.toLocalDateTime().getMonthValue();
+                // Formatar a data e hora para o formato brasileiro
+                SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy HH:mm");
+                String dataHoraFormatada = formatoBrasileiro.format(dataHora);
 
                 // Somar a comissão apenas se estiver no mesmo mês
                 if (mesDataHora == mesAtual) {
                     comissaoAcumulada += rs.getDouble("comissao");
                 }
-
                 modelo.addRow(new Object[]{
-                    dateRenderer.dateTimeFormat.format(dataHora),
-                    //  rs.getString("datahora"),
+                    dataHoraFormatada,
                     rs.getString("datavenda"),
                     rs.getString("cliente"),
                     rs.getString("celular"),
@@ -688,7 +654,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     rs.getString("pagamento"),
                     rs.getString("observacao"),});
             }
-
             conexao.closeConnection(con, pstm, rs);
         } catch (SQLException ErroSql) {
             JOptionPane.showMessageDialog(null, "Erro ao carregar a tabela de dados: " + ErroSql, "ERRO", JOptionPane.ERROR_MESSAGE);
@@ -701,7 +666,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
         txtDataVenda.setText("");
         cbxPagamento.setSelectedItem("Selecione");
         cbxAno.setSelectedItem("Selecione");
-
         txtModelo.setText("");
         txtChassi.setText("");
         txtPlaca.setText("");
@@ -710,35 +674,27 @@ public class frmVenda extends javax.swing.JInternalFrame {
     }
 
     private void desativarCampos() {
-
         txtCliente.setEnabled(false);
         txtCelular.setEnabled(false);
-
         txtDataVenda.setEnabled(false);
-
         cbxPagamento.setEnabled(false);
         txtModelo.setEnabled(false);
         txtChassi.setEnabled(false);
         cbxAno.setEnabled(false);
         txtPlaca.setEnabled(false);
-
         txtComissao.setEnabled(false);
         txtObs.setEnabled(false);
     }
 
     private void ativarCampos() {
-
         txtCliente.setEnabled(true);
         txtCelular.setEnabled(true);
-
         txtDataVenda.setEnabled(true);
-
         cbxPagamento.setEnabled(true);
         txtModelo.setEnabled(true);
         txtChassi.setEnabled(true);
         cbxAno.setEnabled(true);
         txtPlaca.setEnabled(true);
-
         txtComissao.setEnabled(true);
         txtObs.setEnabled(true);
     }
@@ -748,7 +704,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
         btEditar.setEnabled(true);
         btExcluir.setEnabled(true);
         btSalvarPdf.setEnabled(true);
-
     }
 
     public void desativarBotao() {
@@ -756,22 +711,18 @@ public class frmVenda extends javax.swing.JInternalFrame {
         btEditar.setEnabled(false);
         btExcluir.setEnabled(false);
         btSalvarPdf.setEnabled(false);
-
     }
 
     private void CentralizarCampos() {
         txtCliente.setHorizontalAlignment(SwingConstants.CENTER);
         txtCelular.setHorizontalAlignment(SwingConstants.CENTER);
-
         txtDataVenda.setHorizontalAlignment(SwingConstants.CENTER);
         txtModelo.setHorizontalAlignment(SwingConstants.CENTER);
-
         txtChassi.setHorizontalAlignment(SwingConstants.CENTER);
         txtPlaca.setHorizontalAlignment(SwingConstants.CENTER);
         txtComissao.setHorizontalAlignment(SwingConstants.CENTER);
         txtObs.setHorizontalAlignment(SwingConstants.CENTER);
     }
-
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btAbrirPDF;
     private javax.swing.JButton btEditar;

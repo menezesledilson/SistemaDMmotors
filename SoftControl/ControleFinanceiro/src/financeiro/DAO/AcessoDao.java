@@ -1,6 +1,6 @@
 package financeiro.DAO;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.MODEL.Acesso;
 import java.util.List;
 

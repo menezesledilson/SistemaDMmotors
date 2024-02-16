@@ -1,8 +1,13 @@
 package financeiro.VIEW;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import financeiro.DAO.BoletoDao;
 import financeiro.MODEL.Boleto;
+import java.awt.Desktop;
+import java.io.File;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.StandardCopyOption;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -10,8 +15,10 @@ import java.sql.SQLException;
 import java.sql.Timestamp;
 import java.text.NumberFormat;
 import java.time.LocalDate;
+import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 import javax.swing.SwingConstants;
+import javax.swing.filechooser.FileNameExtensionFilter;
 import javax.swing.table.DefaultTableCellRenderer;
 import javax.swing.table.DefaultTableModel;
 
@@ -22,7 +29,7 @@ public class frmBoleto extends javax.swing.JInternalFrame {
         carregaTabela();
         tamanhoTabela();
         desativarCampos();
-        CentralizarCampos();
+        centralizarCampos();
         desativarBotao();
     }
 
@@ -49,6 +56,8 @@ public class frmBoleto extends javax.swing.JInternalFrame {
         txtObs = new javax.swing.JTextField();
         jLabel6 = new javax.swing.JLabel();
         txtDataPag = new javax.swing.JFormattedTextField();
+        btSalvarDae = new javax.swing.JButton();
+        btAbrirDae = new javax.swing.JButton();
 
         setClosable(true);
         setTitle("Boletos");
@@ -71,7 +80,7 @@ public class frmBoleto extends javax.swing.JInternalFrame {
             }
         });
 
-        btEditar.setText("Editar");
+        btEditar.setText("Alterar");
         btEditar.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btEditarActionPerformed(evt);
@@ -124,6 +133,20 @@ public class frmBoleto extends javax.swing.JInternalFrame {
             ex.printStackTrace();
         }
 
+        btSalvarDae.setText("Salvar DAE");
+        btSalvarDae.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btSalvarDaeActionPerformed(evt);
+            }
+        });
+
+        btAbrirDae.setText("Abrir DAE");
+        btAbrirDae.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                btAbrirDaeActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
         jPanel1Layout.setHorizontalGroup(
@@ -148,6 +171,10 @@ public class frmBoleto extends javax.swing.JInternalFrame {
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(btExcluir)
+                                .addGap(18, 18, 18)
+                                .addComponent(btSalvarDae)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
+                                .addComponent(btAbrirDae)
                                 .addGap(0, 0, Short.MAX_VALUE))
                             .addGroup(jPanel1Layout.createSequentialGroup()
                                 .addComponent(jLabel2)
@@ -157,7 +184,7 @@ public class frmBoleto extends javax.swing.JInternalFrame {
                                 .addComponent(jLabel3)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 13, Short.MAX_VALUE)
+                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 9, Short.MAX_VALUE)
                                 .addComponent(jLabel6)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                                 .addComponent(txtDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, 93, javax.swing.GroupLayout.PREFERRED_SIZE)
@@ -179,22 +206,25 @@ public class frmBoleto extends javax.swing.JInternalFrame {
                     .addComponent(btNovo)
                     .addComponent(btGravar)
                     .addComponent(btEditar)
-                    .addComponent(btExcluir))
+                    .addComponent(btExcluir)
+                    .addComponent(btSalvarDae)
+                    .addComponent(btAbrirDae))
                 .addGap(25, 25, 25)
-                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(jLabel2)
-                    .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                    .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel3)
+                        .addComponent(txtDataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(jLabel4)
-                        .addComponent(cbxStatusPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                            .addComponent(jLabel6)
-                            .addComponent(txtDataPag, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(jLabel3)
-                                .addComponent(txtDataVenc, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))))
+                        .addComponent(cbxStatusPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
+                    .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                        .addComponent(jLabel1)
+                        .addComponent(jLabel2)
+                        .addComponent(txtDescricao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(txtValor, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addGap(18, 18, 18)
                 .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                     .addComponent(jLabel5)
@@ -254,9 +284,10 @@ public class frmBoleto extends javax.swing.JInternalFrame {
         btGravar.setEnabled(false);
         btEditar.setEnabled(false);
         btExcluir.setEnabled(false);
+        btSalvarDae.setEnabled(false);
     }
 
-    private void CentralizarCampos() {
+    private void centralizarCampos() {
         txtDescricao.setHorizontalAlignment(SwingConstants.CENTER);
         txtValor.setHorizontalAlignment(SwingConstants.CENTER);
         txtDataVenc.setHorizontalAlignment(SwingConstants.CENTER);
@@ -266,6 +297,7 @@ public class frmBoleto extends javax.swing.JInternalFrame {
     private void btNovoActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btNovoActionPerformed
         ativarCampos();
         btGravar.setEnabled(true);
+        btSalvarDae.setEnabled(true);
     }//GEN-LAST:event_btNovoActionPerformed
     private void tamanhoTabela() {
         tbBoleto.getColumnModel().getColumn(0).setPreferredWidth(100);
@@ -327,12 +359,9 @@ public class frmBoleto extends javax.swing.JInternalFrame {
         c.setDescricao(txtDescricao.getText());
         c.setDataPagamento(txtDataPag.getText());
         c.setDataVencimento(txtDataVenc.getText());
-
         String statusPag = cbxStatusPagamento.getSelectedItem().toString();
         c.setStatusPag(statusPag);
-
         c.setObservacao(txtObs.getText());
-
         btGravar.setEnabled(false);
         dao.adicionar(c);
         carregaTabela();
@@ -365,19 +394,17 @@ public class frmBoleto extends javax.swing.JInternalFrame {
                 "Alteração de dados.  ", JOptionPane.YES_NO_OPTION)) {
             case 0:
                 c.setDescricao(txtDescricao.getText());
-                c.setValor(Double.parseDouble(txtValor.getText()));
+                String valorText = txtValor.getText().trim().replace(",", ".");
+                c.setValor(Double.parseDouble(valorText));
                 c.setDataVencimento(txtDataVenc.getText());
                 c.setDataPagamento(txtDataPag.getText());
 
                 String statusPag = cbxStatusPagamento.getSelectedItem().toString();
                 c.setStatusPag(statusPag);
-
                 c.setObservacao(txtObs.getText());
-
                 dao.alterar(c);
                 carregaTabela();
                 limparCampos();
-                // desativaBotoes();
                 desativarCampos();
                 btEditar.setEnabled(false);
                 break;
@@ -406,7 +433,6 @@ public class frmBoleto extends javax.swing.JInternalFrame {
                 dao.remover(c);
                 carregaTabela();
                 limparCampos();
-                // desativaBotoes();
                 desativarCampos();
                 btExcluir.setEnabled(false);
                 break;
@@ -437,18 +463,83 @@ public class frmBoleto extends javax.swing.JInternalFrame {
         }
 
         txtObs.setText(c.getObservacao());
-
         btEditar.setEnabled(true);
         btExcluir.setEnabled(true);
         ativarCampos();
     }//GEN-LAST:event_tbBoletoMouseClicked
 
+    private void btSalvarDaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btSalvarDaeActionPerformed
+        JFileChooser fileChooser = new JFileChooser();
+        fileChooser.setDialogTitle("Escolha Arquivo PDF");
+        fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos PDF(*.pdf", "pdf"));
+
+        int resultado = fileChooser.showOpenDialog(this);
+
+        if (resultado == JFileChooser.APPROVE_OPTION) {
+            File arquivoSelecionado = fileChooser.getSelectedFile();
+            File directory = new File("C:\\SoftControl\\ControleFinanceiro\\dae");
+            if (!directory.exists()) {
+                directory.mkdirs(); // Cria o diretório se não existir
+            }
+            //Verifica se o arquivo tem extensão .pdf
+            if (arquivoSelecionado.getName().toLowerCase().endsWith(".pdf")) {
+                //Diretorio especifico
+                File destino = new File("C:\\SoftControl\\ControleFinanceiro\\dae\\" + arquivoSelecionado.getName());
+                try {
+                    Files.copy(arquivoSelecionado.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
+
+                    JOptionPane.showMessageDialog(this, "Aquivo salvo com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                } catch (IOException ex) {
+                    JOptionPane.showMessageDialog(this, "Erro ao  salvar o arquivo.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+                    ex.printStackTrace();
+                }
+            }
+
+        }
+    }//GEN-LAST:event_btSalvarDaeActionPerformed
+
+    private void btAbrirDaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirDaeActionPerformed
+        String diretorioDAE = "C:\\SoftControl\\ControleFinanceiro\\dae";
+        try {
+            if (Desktop.isDesktopSupported()) {
+                Desktop desktop = Desktop.getDesktop();
+
+                //Cria um seletor de arquivo
+                JFileChooser fileChooser = new JFileChooser(diretorioDAE);
+                fileChooser.setDialogTitle("Escolher Arquivo PDF");
+                fileChooser.setFileFilter(new FileNameExtensionFilter("Arquivos PDF (*.pdf)", "pdf"));
+
+                int resultado = fileChooser.showOpenDialog(this);
+
+                if (resultado == JFileChooser.APPROVE_OPTION) {
+                    File arquivoPDF = fileChooser.getSelectedFile();
+
+                    //Verificar se o arquivo PDF é valido
+                    if (arquivoPDF.exists() && arquivoPDF.isFile() && arquivoPDF.getName().toLowerCase().endsWith(".pdf")) {
+                        desktop.open(arquivoPDF);
+                    } else {
+
+                    }
+                } else {
+                    // Se o usuário cancelou a escolha
+                    JOptionPane.showMessageDialog(this, "Operação cancelada pelo usuário.", "Aviso", JOptionPane.WARNING_MESSAGE);
+                }
+            } else {
+                // Se a operação Desktop não é suportada
+                JOptionPane.showMessageDialog(this, "A operação Desktop não é suportada nesta plataforma.", "Erro", JOptionPane.ERROR_MESSAGE);
+            }
+        } catch (IOException ex) {
+            ex.printStackTrace();
+        }
+    }//GEN-LAST:event_btAbrirDaeActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton btAbrirDae;
     private javax.swing.JButton btEditar;
     private javax.swing.JButton btExcluir;
     private javax.swing.JButton btGravar;
     private javax.swing.JButton btNovo;
+    private javax.swing.JButton btSalvarDae;
     private javax.swing.JComboBox<String> cbxStatusPagamento;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;

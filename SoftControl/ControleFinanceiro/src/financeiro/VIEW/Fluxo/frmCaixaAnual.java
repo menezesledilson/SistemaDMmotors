@@ -1,6 +1,6 @@
 package financeiro.VIEW.Fluxo;
 
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -114,25 +114,20 @@ public class frmCaixaAnual extends javax.swing.JInternalFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void tamanhoTabela() {
-        //  tbDiarioAnual.getColumnModel().getColumn(0).setPreferredWidth(100);
         tbDiarioAnual.getColumnModel().getColumn(1).setPreferredWidth(200);
         tbDiarioAnual.getColumnModel().getColumn(2).setPreferredWidth(30);
         tbDiarioAnual.getColumnModel().getColumn(3).setPreferredWidth(30);
         tbDiarioAnual.getColumnModel().getColumn(4).setPreferredWidth(200);
     }
-    // private int mesAnterior = -1; // Inicializa com um valor que não representa um mês válido
 
     private void carregaTabela() {
         tamanhoTabela();
         DefaultTableModel modelo = (DefaultTableModel) tbDiarioAnual.getModel();
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
+
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
 
         tbDiarioAnual.getColumnModel().getColumn(0).setCellRenderer(centerRenderer);
-        //  tbLivoCaixa.getColumnModel().getColumn(3).setCellRenderer(centerRenderer);
-        //   tbLivoCaixa.getColumnModel().getColumn(5).setCellRenderer(centerRenderer);
-
-        // Configurar a tabela como não editável
         tbDiarioAnual.setDefaultEditor(Object.class, null);
 
         try {
@@ -164,8 +159,6 @@ public class frmCaixaAnual extends javax.swing.JInternalFrame {
 
                 modelo.addRow(new Object[]{
                     dataHoraFormatada,
-                    //   rs.getString("dataHora"),
-
                     rs.getString("descricao"),
                     currencyEntrada.format(entrada),
                     currencySaida.format(saida),
@@ -175,9 +168,7 @@ public class frmCaixaAnual extends javax.swing.JInternalFrame {
                 somaSaida += saida;
 
                 liquido = somaEntrada - somaSaida;
-
                 liquidoMes = liquido / 12;
-
             }
 
             lblSaldoEntrada.setText("Total de entradas no ano " + NumberFormat.getCurrencyInstance().format(somaEntrada));

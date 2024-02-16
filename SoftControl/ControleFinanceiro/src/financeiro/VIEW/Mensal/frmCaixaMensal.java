@@ -1,7 +1,7 @@
 package financeiro.VIEW.Mensal;
 
 import financeiro.VIEW.Fluxo.*;
-import financeiro.Conexao.conexao;
+import Conexao.conexao;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
@@ -181,13 +181,11 @@ public class frmCaixaMensal extends javax.swing.JInternalFrame {
     private Timestamp dataFim;
 
     private void btProcurarActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btProcurarActionPerformed
-
         // Verificar se as datas inicial e final estão selecionadas
         if (jDataInicial.getDate() == null || jDataFinal.getDate() == null) {
             JOptionPane.showMessageDialog(this, "Por favor, selecione as datas inicial e final antes de realizar a pesquisa.", "Datas não Selecionadas", JOptionPane.WARNING_MESSAGE);
             return; // Abortar a operação se as datas não estiverem selecionadas
         }
-
         // Configurar a tabela como não editável e ajustar larguras das colunas
         tbDiarioMensal.setDefaultEditor(Object.class, null);
         DefaultTableModel modelo = (DefaultTableModel) tbDiarioMensal.getModel();
@@ -220,9 +218,7 @@ public class frmCaixaMensal extends javax.swing.JInternalFrame {
 
                 NumberFormat currencyEntrada = NumberFormat.getCurrencyInstance();
                 NumberFormat currencySaida = NumberFormat.getCurrencyInstance();
-
                 modelo.setNumRows(0);
-
                 while (rs.next()) {
                     Timestamp dataHora = rs.getTimestamp("datahora");
                     SimpleDateFormat formatoBrasileiro = new SimpleDateFormat("dd/MM/yyyy HH:mm");
@@ -238,13 +234,11 @@ public class frmCaixaMensal extends javax.swing.JInternalFrame {
                         currencySaida.format(saida),
                         rs.getString("observacao")
                     });
-
                     somaEntrada += entrada;
                     somaSaida += saida;
                 }
-
                 liquido = somaEntrada - somaSaida;
-                liquidoMes = liquido / 12; // Revisar se esse cálculo está correto
+                liquidoMes = liquido / 12;  
 
                 lblSaldoEntrada.setText("Total de entradas no mês " + NumberFormat.getCurrencyInstance().format(somaEntrada));
                 lblSaldoSaida.setText("Total de saidas no mês  " + NumberFormat.getCurrencyInstance().format(somaSaida));
