@@ -3,7 +3,7 @@
 - Sistema para administrar a gestão da DM Motors.
 - Cadastro de vendas: quando muda o mês, a comissão reinicia.
 - Cadastro de vendas: botão para importar arquivo PDF para dentro do sistema e também é possível abrir o arquivo PDF importado.
-- Livro caixa: quando muda o mês, o saldo anterior e o saldo anual na tabela reiniciam.
+- Livro caixa: quando muda o mês, o saldo anterior e o saldo atual na tabela reiniciam.
 
 
 ### Features
