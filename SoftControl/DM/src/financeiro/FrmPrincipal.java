@@ -1,6 +1,7 @@
 package financeiro;
 
-import financeiro.View.frmLogin;
+
+import financeiro.VIEW.frmLogin;
 import javax.swing.UIManager;
 import javax.swing.UIManager.LookAndFeelInfo;
 import javax.swing.WindowConstants;

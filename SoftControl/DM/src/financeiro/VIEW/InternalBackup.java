@@ -79,12 +79,12 @@ public class InternalBackup extends javax.swing.JInternalFrame {
         // Seu código de backup aqui, sem alterações
         String host = "localhost";
         String port = "5432";
-        String database = "DMmotorsTest";
+        String database = "dmmotors";
         String user = "postgres";
         String password = "admin";
 
         // Caminho absoluto para o diretório de backup
-        String backupDirectoryPath = "C:\\SoftControl\\ControleFinanceiro\\backup";
+        String backupDirectoryPath = "C:\\SoftDMmotors\\DM\\backup";
         File directory = new File(backupDirectoryPath);
         if (!directory.exists()) {
             directory.mkdirs(); // Cria o diretório se não existir
@@ -146,11 +146,11 @@ public class InternalBackup extends javax.swing.JInternalFrame {
     private void btRestoreActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btRestoreActionPerformed
         String host = "localhost";
         String port = "5432";
-        String database = "DMmotorsTest";
+        String database = "dmmotors";
         String user = "postgres";
         String password = "admin";
         // Caminho do diretório de restauração
-        String restoreDirectory = "C:SoftControl\\ControleFinanceiro\\backup";
+        String restoreDirectory = "C:\\SoftDMmotors\\DM\\backup";
         // Crie um diálogo de seleção de arquivo
         JFileChooser fileChooser = new JFileChooser(restoreDirectory);
         fileChooser.setDialogTitle("Selecione o arquivo de backup");

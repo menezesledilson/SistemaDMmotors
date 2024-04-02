@@ -480,14 +480,14 @@ public class frmBoleto extends javax.swing.JInternalFrame {
 
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File arquivoSelecionado = fileChooser.getSelectedFile();
-            File directory = new File("C:\\SoftControl\\ControleFinanceiro\\dae");
+            File directory = new File("C:\\SoftDMmotors\\DM\\dae");
             if (!directory.exists()) {
                 directory.mkdirs(); // Cria o diretório se não existir
             }
             //Verifica se o arquivo tem extensão .pdf
             if (arquivoSelecionado.getName().toLowerCase().endsWith(".pdf")) {
                 //Diretorio especifico
-                File destino = new File("C:\\SoftControl\\ControleFinanceiro\\dae\\" + arquivoSelecionado.getName());
+                File destino = new File("C:\\SoftDMmotors\\DM\\dae\\" + arquivoSelecionado.getName());
                 try {
                     Files.copy(arquivoSelecionado.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
@@ -502,7 +502,7 @@ public class frmBoleto extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_btSalvarDaeActionPerformed
 
     private void btAbrirDaeActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirDaeActionPerformed
-        String diretorioDAE = "C:\\SoftControl\\ControleFinanceiro\\dae";
+        String diretorioDAE = "C:\\SoftDMmotors\\DM\\dae";
         try {
             if (Desktop.isDesktopSupported()) {
                 Desktop desktop = Desktop.getDesktop();

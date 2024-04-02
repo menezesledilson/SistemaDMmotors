@@ -283,11 +283,11 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                         .addComponent(txtCliente, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
+                            .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                            .addComponent(jLabel10))
+                        .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(cbxPagamento, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                            .addComponent(jLabel8)
-                            .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                                .addComponent(txtComissao, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                                .addComponent(jLabel10)))
+                            .addComponent(jLabel8))
                         .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                             .addComponent(txtDataVenda, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                             .addComponent(jLabel3))
@@ -369,7 +369,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
     }//GEN-LAST:event_tbVendaMouseClicked
 
     private void btAbrirPDFActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btAbrirPDFActionPerformed
-        String diretorioCRLV = "C:\\SoftControl\\ControleFinanceiro\\crlv";
+        String diretorioCRLV = "C:\\SoftDMmotors\\DM\\crlv";
         try {
             // Verifica se a plataforma suporta a operação Desktop
             if (Desktop.isDesktopSupported()) {
@@ -413,7 +413,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         if (resultado == JFileChooser.APPROVE_OPTION) {
             File arquivoSelecionado = fileChooser.getSelectedFile();
-            File directory = new File("C:\\SoftControl\\ControleFinanceiro\\crlv");
+            File directory = new File("C:\\SoftDMmotors\\DM\\crlv");
             if (!directory.exists()) {
                 directory.mkdirs(); // Cria o diretório se não existir
             }
@@ -421,7 +421,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
             // Verifica se o arquivo tem extensão .pdf
             if (arquivoSelecionado.getName().toLowerCase().endsWith(".pdf")) {
                 // Diretório específico "c:\control\crlv"
-                File destino = new File("C:\\SoftControl\\ControleFinanceiro\\crlv\\" + arquivoSelecionado.getName());
+                File destino = new File("C:\\SoftDMmotors\\DM\\crlv\\" + arquivoSelecionado.getName());
                 try {
                     Files.copy(arquivoSelecionado.toPath(), destino.toPath(), StandardCopyOption.REPLACE_EXISTING);
 
@@ -576,7 +576,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
         // Configurar a tabela como não editável
         tbVenda.setDefaultEditor(Object.class, null);
     }
-
     private void colunaTabela() {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);

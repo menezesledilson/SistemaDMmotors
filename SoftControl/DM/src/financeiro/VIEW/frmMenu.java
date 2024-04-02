@@ -18,11 +18,9 @@ public class frmMenu extends javax.swing.JFrame {
         setSize(1250, 600);
         // Desabilita a capacidade de redimensionamento
         setResizable(false);
-
         // Remove a opção de maximizar do menu de contexto
         setExtendedState(frmMenu.MAXIMIZED_HORIZ);
     }
-
     @SuppressWarnings("unchecked")
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {

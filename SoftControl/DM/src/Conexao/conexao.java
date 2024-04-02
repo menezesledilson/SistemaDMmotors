@@ -10,7 +10,7 @@ import java.sql.SQLException;
 public class conexao {
 
     private static final String Drive = "org.postgresql.Driver";
-    private static final String URL = "jdbc:postgresql://localhost:5432/DMmotorsTest"; //DMmotorsTest
+    private static final String URL = "jdbc:postgresql://localhost:5432/dmmotors"; //DMmotorsTest
     private static final String USUARIO_POSTGRES = "postgres";
     private static final String PASSWORD = "admin";
 
