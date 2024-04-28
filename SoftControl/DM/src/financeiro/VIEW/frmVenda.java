@@ -71,8 +71,8 @@ public class frmVenda extends javax.swing.JInternalFrame {
         btAbrirPDF = new javax.swing.JButton();
         jScrollPane2 = new javax.swing.JScrollPane();
         tbVenda = new javax.swing.JTable();
-        txtPlaca = new javax.swing.JFormattedTextField();
-        txtChassi = new javax.swing.JFormattedTextField();
+        txtPlaca = new javax.swing.JTextField();
+        txtChassi = new javax.swing.JTextField();
 
         setClosable(true);
         setResizable(true);
@@ -139,7 +139,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
 
         jLabel6.setText("Placa.:");
 
-        jLabel7.setText("Chassi.:");
+        jLabel7.setText("Renavan.:");
 
         jLabel8.setText("Status Pag.:");
 
@@ -184,18 +184,6 @@ public class frmVenda extends javax.swing.JInternalFrame {
             }
         });
         jScrollPane2.setViewportView(tbVenda);
-
-        try {
-            txtPlaca.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("UUU-####")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
-
-        try {
-            txtChassi.setFormatterFactory(new javax.swing.text.DefaultFormatterFactory(new javax.swing.text.MaskFormatter("****.****.****.*****")));
-        } catch (java.text.ParseException ex) {
-            ex.printStackTrace();
-        }
 
         javax.swing.GroupLayout jPanel1Layout = new javax.swing.GroupLayout(jPanel1);
         jPanel1.setLayout(jPanel1Layout);
@@ -251,20 +239,20 @@ public class frmVenda extends javax.swing.JInternalFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addComponent(jLabel6)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 118, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(24, 24, 24)
+                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, 124, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addGap(18, 18, 18)
                         .addComponent(jLabel5)
                         .addGap(12, 12, 12)
                         .addComponent(cbxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addComponent(jLabel7)
-                        .addGap(12, 12, 12)
-                        .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, 203, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(12, 12, 12)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                        .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, 219, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(jLabel9)
                         .addGap(12, 12, 12)
                         .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, 206, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                .addContainerGap(62, Short.MAX_VALUE))
+                .addContainerGap(50, Short.MAX_VALUE))
         );
         jPanel1Layout.setVerticalGroup(
             jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -300,13 +288,13 @@ public class frmVenda extends javax.swing.JInternalFrame {
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtModelo, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel4)
-                        .addComponent(jLabel6))
-                    .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel6)
+                        .addComponent(txtPlaca, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(cbxAno, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel5)
-                        .addComponent(jLabel7))
-                    .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(jLabel7)
+                        .addComponent(txtChassi, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
                     .addGroup(jPanel1Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
                         .addComponent(txtObs, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addComponent(jLabel9)))
@@ -533,18 +521,32 @@ public class frmVenda extends javax.swing.JInternalFrame {
         String comissaoText = txtComissao.getText().trim().replace(",", ".");
         double comissao = Double.parseDouble(comissaoText);
         c.setComissao(comissao);
-        c.setNomeCliente(txtCliente.getText());
+        c.setNomeCliente(txtCliente.getText().trim());
         c.setCelular(txtCelular.getText());
-        c.setDataVenda(txtDataVenda.getText());
-        c.setModelCarro(txtModelo.getText().toUpperCase());
+        c.setDataVenda(txtDataVenda.getText().trim());
+        c.setModelCarro(txtModelo.getText().toUpperCase().trim());
         c.setObservacao(txtObs.getText());
         String statusPag = cbxPagamento.getSelectedItem().toString();
         c.setStatus(statusPag);
         String anoCarro = cbxAno.getSelectedItem().toString();
         int anoCarroInt = Integer.parseInt(anoCarro);
         c.setAnoCarro(anoCarroInt);
-        c.setPlacaCarro(txtPlaca.getText().toUpperCase());
-        c.setChassi(txtChassi.getText().toUpperCase());
+        
+        String placaCarro = txtPlaca.getText().toUpperCase();
+        if (placaCarro.length() > 7) {
+            placaCarro = placaCarro.substring(0, 7);
+        }
+        c.setPlacaCarro(placaCarro);
+        
+       // c.setPlacaCarro(txtPlaca.getText().toUpperCase());
+        
+        
+        //c.setChassi(txtChassi.getText().trim());
+        String chassi = txtChassi.getText().trim();
+        if (chassi.length() > 11) {
+            chassi = chassi.substring(0, 11);
+        }
+        c.setChassi(chassi);
 
         dao.adicionar(c);
         carregaTabela();
@@ -576,6 +578,7 @@ public class frmVenda extends javax.swing.JInternalFrame {
         // Configurar a tabela como não editável
         tbVenda.setDefaultEditor(Object.class, null);
     }
+
     private void colunaTabela() {
         DefaultTableCellRenderer centerRenderer = new DefaultTableCellRenderer();
         centerRenderer.setHorizontalAlignment(SwingConstants.CENTER);
@@ -744,12 +747,12 @@ public class frmVenda extends javax.swing.JInternalFrame {
     private javax.swing.JLabel lblSaldoComissao;
     private javax.swing.JTable tbVenda;
     private javax.swing.JFormattedTextField txtCelular;
-    private javax.swing.JFormattedTextField txtChassi;
+    private javax.swing.JTextField txtChassi;
     private javax.swing.JTextField txtCliente;
     private javax.swing.JTextField txtComissao;
     private javax.swing.JFormattedTextField txtDataVenda;
     private javax.swing.JTextField txtModelo;
     private javax.swing.JTextField txtObs;
-    private javax.swing.JFormattedTextField txtPlaca;
+    private javax.swing.JTextField txtPlaca;
     // End of variables declaration//GEN-END:variables
 }

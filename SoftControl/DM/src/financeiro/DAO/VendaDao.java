@@ -31,12 +31,17 @@ public class VendaDao {
             pstm.setString(10, vendas.getObservacao());
 
             pstm.execute();
+
+            // Seu código para adicionar no banco de dados aqui
             JOptionPane.showMessageDialog(null, "Adicionado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
         } catch (SQLException ErroSql) {
-            JOptionPane.showMessageDialog(null, "Erro ao adicionar no banco.", "Erro", JOptionPane.ERROR_MESSAGE);
+            // Mensagem de erro específica para exceção SQLException
+            JOptionPane.showMessageDialog(null, "Erro ao adicionar no banco: " + ErroSql.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
         } finally {
+            // Fechar conexão com o banco de dados
             conexao.closeConnection(con, pstm);
         }
+
     }
 
     public void alterar(Vendas vendas) {
@@ -58,10 +63,11 @@ public class VendaDao {
             pstm.setLong(11, vendas.getId());  // Adicionei a definição do ID (ou o nome correto, se for diferente)
 
             pstm.executeUpdate();
-            JOptionPane.showMessageDialog(null, "Alterado com sucesso.", "Sucesso", JOptionPane.INFORMATION_MESSAGE);
+            JOptionPane.showMessageDialog(null, "Alterado com sucesso.", "Sucesso", JOptionPane.ERROR_MESSAGE);
         } catch (SQLException ErroSql) {
-            ErroSql.printStackTrace();  // Adicionei a impressão do rastreamento de pilha
-            JOptionPane.showMessageDialog(null, "Erro ao alterar no banco.", "Erro", JOptionPane.ERROR_MESSAGE);
+            // Adicionei a impressão do rastreamento de pilha
+            JOptionPane.showMessageDialog(null, "Erro ao alterar no banco." + ErroSql.getMessage(), "Erro", JOptionPane.ERROR_MESSAGE);
+            ErroSql.printStackTrace();
         } finally {
             conexao.closeConnection(con, pstm);
         }

@@ -3,11 +3,9 @@
     <editor-bookmarks xmlns="http://www.netbeans.org/ns/editor-bookmarks/2" lastBookmarkId="0"/>
     <open-files xmlns="http://www.netbeans.org/ns/projectui-open-files/2">
         <group>
-            <file>file:/C:/SoftDMmotors/DM/src/Conexao/conexao.java</file>
             <file>file:/C:/SoftDMmotors/DM/src/financeiro/VIEW/frmLogin.java</file>
-            <file>file:/C:/SoftDMmotors/DM/src/financeiro/VIEW/InternalLivroCaixa.java</file>
             <file>file:/C:/SoftDMmotors/DM/src/financeiro/VIEW/frmVenda.java</file>
-            <file>file:/C:/SoftDMmotors/DM/src/financeiro/VIEW/frmBoleto.java</file>
+            <file>file:/C:/SoftDMmotors/DM/src/financeiro/DAO/VendaDao.java</file>
         </group>
     </open-files>
 </project-private>
